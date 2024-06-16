@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Table 02</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<section class="ftco-section">
+    <div>
+        <a th:href="@{/employees/add}" class="btn btn-primary mb-3">Add New Employee</a>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section">Table #02</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-wrap">
+                    <table class="table">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th>ID no.</th>
+                            <th>Name</th>
+                            <th>Sex</th>
+                            <th>Hometown</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="employee : ${employees}">
+                            <th th:text="${employee.id}" scope="row">ID</th>
+                            <td th:text="${employee.name}">Name</td>
+                            <td>
+                                <span th:if="${employee.sex == 'Nu'}"><i class="fa fa-female"></i> Female</span>
+                                <span th:if="${employee.sex == 'Nam'}"><i class="fa fa-male"></i> Male</span>
+                            </td>
+                            <td th:text="${employee.hometown}">Hometown</td>
+                            <td th:text="${employee.department.name}">Department</td>
+                            <td th:text="${employee.salary}">Salary</td>
+                            <td>
+                                <a th:href="@{/employees/edit/{id}(id=${employee.id})}" class="btn-success btn-sm">Edit</a>
+                                <a th:href="@{/employees/delete/{id}(id=${employee.id})}" class="btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/popper.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+</body>
+</html>
